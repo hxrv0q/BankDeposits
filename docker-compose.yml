@@ -1,0 +1,34 @@
+version: '3.9'
+
+networks:
+  bank-deposits-dev:
+    driver: bridge
+
+services:
+  app:
+    container_name: bank-deposits-razor
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - 8080:8080
+    networks:
+      - bank-deposits-dev
+    depends_on:
+      - db
+
+  db:
+    container_name: bank-deposits-db
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "YourStrong!PasswOrd"
+    ports:
+      - 1433:1433
+    networks:
+      - bank-deposits-dev
+    # volumes:
+      # - db-data:/var/opt/mssql/data
+  
+volumes:
+  db-data:

@@ -1,0 +1,47 @@
+@page
+@model BankDeposits.Razor.Pages.Depositors.DepositorCreatePageModel
+
+@{
+    ViewData["Title"] = "Create Depositor";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container">
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Depositor.Name" class="control-label"></label>
+            <input asp-for="Depositor.Name" class="form-control"/>
+            <span asp-validation-for="Depositor.Name" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Depositor.Surname" class="control-label"></label>
+            <input asp-for="Depositor.Surname" class="form-control"/>
+            <span asp-validation-for="Depositor.Surname" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Depositor.Patronymic" class="control-label"></label>
+            <input asp-for="Depositor.Patronymic" class="form-control"/>
+            <span asp-validation-for="Depositor.Patronymic" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Depositor.PassportSeries" class="control-label"></label>
+            <input asp-for="Depositor.PassportSeries" class="form-control"/>
+            <span asp-validation-for="Depositor.PassportSeries" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Depositor.PassportNumber" class="control-label"></label>
+            <input asp-for="Depositor.PassportNumber" class="form-control"/>
+            <span asp-validation-for="Depositor.PassportNumber" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Depositor.Address" class="control-label"></label>
+            <input asp-for="Depositor.Address" class="form-control"/>
+            <span asp-validation-for="Depositor.Address" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary"/>
+        </div>
+    </form>
+</div>

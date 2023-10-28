@@ -1,0 +1,52 @@
+@page "{id:guid}"
+@model BankDeposits.Razor.Pages.Depositors.DepositorDetailsPageModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-4">
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.Depositor.Id)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Depositor.Id)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Depositor.FullName)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Depositor.FullName)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Depositor.Passport)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Depositor.Passport)
+                </dd>
+                <dt>
+                    @Html.DisplayNameFor(model => model.Depositor.Address)
+                </dt>
+                <dd>
+                    @Html.DisplayFor(model => model.Depositor.Address)
+                </dd>
+            </dl>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <a asp-page="Edit" asp-route-id="@Model.Depositor.Id" class="btn btn-primary">Edit</a>
+            <a asp-page="Index" class="btn btn-primary">Back to List</a>
+
+            <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Depositor.Id" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>
