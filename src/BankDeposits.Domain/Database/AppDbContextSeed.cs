@@ -12,7 +12,6 @@ public static class AppDbContextSeed
     {
         const string depositorGuid = "d0b9c9a0-1b1a-4b1a-9f0a-0b0a0b0a0b0a";
         const string accountGuid = "a0b9c9a0-1b1a-4b1a-9f0a-0b0a0b0a0b0a";
-        const string depositGuid = "b0b9c9a0-1b1a-4b1a-9f0a-0b0a0b0a0b0a";
 
         builder.Entity<Depositor>().HasData(new Depositor
         {
@@ -35,9 +34,19 @@ public static class AppDbContextSeed
 
         builder.Entity<Deposit>().HasData(new Deposit
         {
-            Id = Guid.Parse(depositGuid),
+            Id = Guid.NewGuid(),
             AccountId = Guid.Parse(accountGuid),
             StartDate = DateTime.UtcNow,
+            EndDate = DateTime.Now.AddYears(1),
+            Rate = 10,
+            Amount = 1000,
+        });
+
+        builder.Entity<Deposit>().HasData(new Deposit
+        {
+            Id = Guid.NewGuid(),
+            AccountId = Guid.Parse(accountGuid),
+            StartDate = DateTime.UtcNow.AddDays(-3),
             EndDate = DateTime.Now.AddYears(1),
             Rate = 10,
             Amount = 1000,

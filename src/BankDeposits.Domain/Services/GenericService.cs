@@ -10,39 +10,35 @@ public class GenericService<TEntity> : IService<TEntity>
     where TEntity : class
 {
     private readonly AppDbContext _context;
-    private readonly DbSet<TEntity> _set;
 
-    protected GenericService(AppDbContext context)
-    {
-        _context = context;
-        _set = _context.Set<TEntity>();
-    }
+    protected GenericService(AppDbContext context) => _context = context;
 
-    public async Task<IEnumerable<TEntity>> GetAllAsync() => await _set.ToListAsync();
+    protected DbSet<TEntity> Set => _context.Set<TEntity>();
 
+    public async virtual Task<IEnumerable<TEntity>> GetAllAsync() => await Set.ToListAsync();
 
-    public async Task<TEntity> GetAsync(Guid id) => await _set.FindAsync(id) ?? throw new EntityNotFoundException(typeof(TEntity).Name);
+    public async virtual Task<TEntity> GetAsync(Guid id) => await Set.FindAsync(id) ?? throw new EntityNotFoundException(typeof(TEntity).Name);
 
-    public async Task<TEntity?> FindAsync(Expression<Func<TEntity, bool>> predicate) => await _set.Where(predicate).FirstOrDefaultAsync();
+    public async virtual Task<TEntity?> FindAsync(Expression<Func<TEntity, bool>> predicate) => await Set.Where(predicate).FirstOrDefaultAsync();
 
-    public async Task<TEntity> AddAsync(TEntity entity)
+    public async virtual Task<TEntity> AddAsync(TEntity entity)
     {
         var entry = _context.Entry(entity);
         if (entry.State == EntityState.Detached)
         {
-            _set.Add(entity);
+            Set.Add(entity);
         }
 
         await _context.SaveChangesAsync();
         return entity;
     }
 
-    public async Task<TEntity> UpdateAsync(TEntity entity)
+    public async virtual Task<TEntity> UpdateAsync(TEntity entity)
     {
         var entry = _context.Entry(entity);
         if (entry.State == EntityState.Detached)
         {
-            _set.Attach(entity);
+            Set.Attach(entity);
             entry.State = EntityState.Modified;
         }
 
@@ -50,15 +46,15 @@ public class GenericService<TEntity> : IService<TEntity>
         return entity;
     }
 
-    public async Task<bool> DeleteAsync(Guid id)
+    public async virtual Task<bool> DeleteAsync(Guid id)
     {
-        var entity = await _set.FindAsync(id);
+        var entity = await Set.FindAsync(id);
         if (entity is null)
         {
             return false;
         }
 
-        _set.Remove(entity);
+        Set.Remove(entity);
         var result = await _context.SaveChangesAsync();
         return result > 0;
     }

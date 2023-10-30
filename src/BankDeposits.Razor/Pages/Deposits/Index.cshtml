@@ -1,0 +1,40 @@
+@page
+@model BankDeposits.Razor.Pages.Deposits.DepositsIndexPageModel
+
+@{
+    ViewData["Title"] = "Deposits List";
+}
+
+<h1 class="display-4 mb-4">@ViewData["Title"]</h1>
+
+<a asp-page="Create" class="btn btn-primary mb-3">Create New</a>
+
+<div class="container mt-3">
+    <table class="table table-striped table-responsive-md table-hover shadow">
+        <thead class="thead-dark">
+        <tr>
+            <th>Id</th>
+            <th>Account Id</th>
+            <th>Start Date</th>
+            <th>End Date</th>
+            <th>Rate</th>
+            <th>Amount</th>
+            <th>Profit</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var deposit in Model.Deposits)
+        {
+            <tr>
+                <td>@deposit.Id</td>
+                <td>@deposit.AccountId</td>
+                <td>@deposit.StartDate</td>
+                <td>@deposit.EndDate</td>
+                <td>@deposit.Rate</td>
+                <th>@deposit.Amount</th>
+                <th>@deposit.Profit</th>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

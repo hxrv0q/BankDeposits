@@ -16,7 +16,7 @@ public class DepositorIndexPageModel : PageModel
       _depositorService = depositorService;
    }
    
-   public IList<Models.DepositorViewModel> Depositors { get; set; } = new List<Models.DepositorViewModel>();
+   public IList<DepositorViewModel> Depositors { get; set; } = new List<Models.DepositorViewModel>();
 
    public async Task<IActionResult> OnGetAsync()
    {
