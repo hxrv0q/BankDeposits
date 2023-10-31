@@ -1,0 +1,30 @@
+@page "/depositors"
+
+@inject IDepositorService DepositorService
+
+<h1>All Depositors</h1>
+
+<ListBase Items="@_depositors">
+    <TableHeader>
+        <th>Index</th>
+        <th>Depositor Id</th>
+        <th>Full Name</th>
+        <th>Passport</th>
+        <th>Home Address</th>
+    </TableHeader>
+    <RowContent Context="depositor">
+        <td>@depositor.Index</td>
+        <td>@depositor.Model.Id</td>
+        <td>@depositor.Model.FullName</td>
+        <td>@depositor.Model.Passport</td>
+        <td>@depositor.Model.Address</td>
+    </RowContent>
+</ListBase>
+
+@code {
+
+    private IEnumerable<Depositor>? _depositors;
+
+    protected override async Task OnInitializedAsync() => _depositors = await DepositorService.GetAllAsync();
+
+}

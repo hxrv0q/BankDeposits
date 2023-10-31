@@ -1,0 +1,32 @@
+@page "/accounts"
+
+@inject IAccountService AccountService
+
+<h1>All Accounts</h1>
+
+<ListBase Items="@_accounts">
+    <TableHeader>
+        <th>Index</th>
+        <th>Account Id</th>
+        <th>Owner Id</th>
+        <th>Account Number</th>
+        <th>Account Balance</th>
+        <th>Account Total Profit</th>
+    </TableHeader>
+    <RowContent Context="account">
+        <td>@account.Index</td>
+        <td>@account.Model.Id</td>
+        <td>@account.Model.OwnerId</td>
+        <td>@account.Model.Number</td>
+        <td>@account.Model.Balance</td>
+        <td>@account.Model.TotalProfit</td>
+    </RowContent>
+</ListBase>
+
+@code {
+
+    private IEnumerable<Account>? _accounts;
+
+    protected override async Task OnInitializedAsync() => _accounts = await AccountService.GetAllAsync();
+
+}
