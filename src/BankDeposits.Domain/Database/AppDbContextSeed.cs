@@ -41,15 +41,5 @@ public static class AppDbContextSeed
             Rate = 10,
             Amount = 1000,
         });
-
-        builder.Entity<Deposit>().HasData(new Deposit
-        {
-            Id = Guid.NewGuid(),
-            AccountId = Guid.Parse(accountGuid),
-            StartDate = DateTime.UtcNow.AddDays(-3),
-            EndDate = DateTime.Now.AddYears(1),
-            Rate = 10,
-            Amount = 1000,
-        });
     }
 }

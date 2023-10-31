@@ -33,6 +33,9 @@
                 <td>@deposit.Rate</td>
                 <th>@deposit.Amount</th>
                 <th>@deposit.Profit</th>
+                <th>
+                    <a asp-page="./Details" asp-route-id="@deposit.Id" class="btn btn-primary">Details</a>
+                </th>
             </tr>
         }
         </tbody>

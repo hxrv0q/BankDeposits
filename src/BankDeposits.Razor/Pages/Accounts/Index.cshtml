@@ -21,16 +21,19 @@
         </tr>
         </thead>
         <tbody>
-            @foreach (var account in Model.Accounts)
-            {
-                <tr>
-                    <td>@account.Id</td>
-                    <td>@account.OwnerId</td>
-                    <td>@account.Balance</td>
-                    <td>@account.Number</td>
-                    <td>@account.TotalProfit</td>
-                </tr> 
-            }
+        @foreach (var account in Model.Accounts)
+        {
+            <tr>
+                <td>@account.Id</td>
+                <td>@account.OwnerId</td>
+                <td>@account.Balance</td>
+                <td>@account.Number</td>
+                <td>@account.TotalProfit</td>
+                <td>
+                    <a asp-page="./Details" asp-route-id="@account.Id" class="btn btn-primary">See more</a>
+                </td>
+            </tr>
+        }
         </tbody>
     </table>
 </div>

@@ -2,9 +2,9 @@ namespace BankDeposits.Razor.Models;
 
 public class AccountViewModel
 {
-    public Guid Id { get; set; }
-    public Guid OwnerId { get; set; }
-    public decimal Balance { get; set; }
-    public string Number { get; set; } = string.Empty;
-    public decimal TotalProfit { get; set; }
+    public Guid Id { get; init; }
+    public Guid OwnerId { get; init; }
+    public decimal Balance { get; init; }
+    public string Number { get; init; } = string.Empty;
+    public decimal TotalProfit { get; init; }
 }

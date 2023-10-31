@@ -1,0 +1,24 @@
+@page
+@model BankDeposits.Razor.Pages.Deposits.DepositsEditPageModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container">
+    <form method="post">
+        <input type="hidden" asp-for="Deposit.Id"/>
+
+        <div class="form-group">
+            <label asp-for="Deposit.Rate" class="control-label"></label>
+            <input asp-for="Deposit.Rate" class="form-control"/>
+            <span asp-validation-for="Deposit.Rate" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Save" class="btn btn-primary"/>
+        </div>
+    </form>
+</div>

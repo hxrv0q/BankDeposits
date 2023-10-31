@@ -1,0 +1,44 @@
+@page
+@model BankDeposits.Razor.Pages.Deposits.DepositsCreatePageModel
+
+@{
+    ViewData["Title"] = "Create Deposit";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container">
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Deposit.Amount" class="control-label"></label>
+            <input asp-for="Deposit.Amount" class="form-control"/>
+            <span asp-validation-for="Deposit.Amount" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Deposit.Rate" class="control-label"></label>
+            <input asp-for="Deposit.Rate" class="form-control"/>
+            <span asp-validation-for="Deposit.Rate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Deposit.StartDate"></label>
+            <input asp-for="Deposit.StartDate" class="form-control" type="date"/>
+            <span asp-validation-for="Deposit.StartDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Deposit.EndDate" class="control-label"></label>
+            <input asp-for="Deposit.EndDate" class="form-control" type="date"/>
+            <span asp-validation-for="Deposit.EndDate" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Deposit.AccountId" class="control-label"></label>
+            <select asp-for="Deposit.AccountId" class="form-control" asp-items="Model.Accounts">
+                <option value="">-- Select Account --</option>
+            </select>
+            <span asp-validation-for="Deposit.AccountId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary"/>
+        </div>
+    </form>
+</div>

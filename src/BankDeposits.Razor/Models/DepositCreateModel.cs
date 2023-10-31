@@ -13,9 +13,9 @@ public class DepositCreateModel
     [Required, Range(0, 1_000_000_000, ErrorMessage = "The amount must be between 0 and 1 000 000 000")]
     public decimal Amount { get; init; }
 
-    [Required, Compare(nameof(EndDate), ErrorMessage = "The start date must be less than the end date")]
+    [Required]
     public DateTime StartDate { get; init; }
 
-    [Required, Compare(nameof(StartDate), ErrorMessage = "The end date must be greater than the start date")]
+    [Required]
     public DateTime EndDate { get; init; }
 }

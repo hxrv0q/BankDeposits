@@ -8,8 +8,8 @@ public class AccountCreateModel
     public Guid OwnerId { get; init; }
 
     [Required, RegularExpression(@"^\d{16}$", ErrorMessage = "The account number must be in the format 0000000000000000")]
-    public string Number { get; set; } = string.Empty;
+    public string Number { get; init; } = string.Empty;
 
     [Required, Range(0, 1_000_000_000, ErrorMessage = "The balance must be between 0 and 1 000 000 000")]
-    public decimal Balance { get; set; }
+    public decimal Balance { get; init; }
 }

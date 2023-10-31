@@ -1,0 +1,40 @@
+@page "{id:guid}"
+@model BankDeposits.Razor.Pages.Deposits.DepositDetailsPageModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container mb-3">
+    <div class="row">
+        <dl class="dl-horizontal">
+            <dt>@Html.DisplayNameFor(model => model.Deposit.Id)</dt>
+            <dd>@Html.DisplayFor(model => model.Deposit.Id)</dd>
+            <dt>@Html.DisplayNameFor(model => model.Deposit.AccountId)</dt>
+            <dd>@Html.DisplayFor(model => model.Deposit.AccountId)</dd>
+            <dt>@Html.DisplayNameFor(model => model.Deposit.Amount)</dt>
+            <dd>@Html.DisplayFor(model => model.Deposit.Amount)</dd>
+            <dt>@Html.DisplayNameFor(model => model.Deposit.StartDate)</dt>
+            <dd>@Html.DisplayFor(model => model.Deposit.StartDate)</dd>
+            <dt>@Html.DisplayNameFor(model => model.Deposit.EndDate)</dt>
+            <dd>@Html.DisplayFor(model => model.Deposit.EndDate)</dd>
+            <dt>@Html.DisplayNameFor(model => model.Deposit.Rate)</dt>
+            <dd>@Html.DisplayFor(model => model.Deposit.Rate)</dd>
+            <dt>@Html.DisplayNameFor(model => model.Deposit.Profit)</dt>
+            <dd>@Html.DisplayFor(model => model.Deposit.Profit)</dd>
+        </dl>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <a asp-page="Edit" asp-route-id="@Model.Deposit.Id" class="btn btn-primary">Edit</a>
+            <a asp-page="Index" class="btn btn-primary">Back to List</a>
+
+            <form method="post" asp-page-handler="Delete" asp-route-id="@Model.Deposit.Id" onsubmit="return confirm('Are you sure you want to delete this item?');">
+                <button type="submit" class="btn btn-danger">Delete</button>
+            </form>
+        </div>
+    </div>
+</div>

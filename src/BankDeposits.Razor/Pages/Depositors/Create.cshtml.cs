@@ -50,7 +50,7 @@ public class DepositorCreatePageModel : PageModel
 
     private async Task<bool> VerifyPassport(string passportNumber)
     {
-        var depositor = await _depositorService.FindAsync(d => d.PassportNumber == passportNumber);
+        var depositor = await _depositorService.GetByPassportNumberAsync(passportNumber);
         return depositor is null;
     }
 }

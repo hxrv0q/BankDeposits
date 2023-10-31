@@ -1,0 +1,34 @@
+@page
+@model BankDeposits.Razor.Pages.Accounts.AccountsCreatePageModel
+
+@{
+    ViewData["Title"] = "Create Account";
+}
+
+<h1>@ViewData["Title"]</h1>
+
+<div class="container">
+    <form method="post">
+        <div class="form-group">
+            <label asp-for="Account.Balance" class="control-label"></label>
+            <input asp-for="Account.Balance" class="form-control"/>
+            <span asp-validation-for="Account.Balance" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Account.Number" class="control-label"></label>
+            <input asp-for="Account.Number" class="form-control"/>
+            <span asp-validation-for="Account.Number" class="text-danger"></span>
+        </div>
+        <div class="form-group">
+            <label asp-for="Account.OwnerId" class="control-label"></label>
+            <select asp-for="Account.OwnerId" class="form-control" asp-items="Model.Depositors">
+                <option value="">-- Select Depositor --</option>
+            </select>
+            <span asp-validation-for="Account.OwnerId" class="text-danger"></span>
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-primary"/>
+        </div>
+    </form>
+</div>

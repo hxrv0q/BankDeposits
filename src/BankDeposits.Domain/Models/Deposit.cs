@@ -11,6 +11,7 @@ public class Deposit
     public decimal Rate { get; set; }
     public decimal Amount { get; set; }
     public Account Account { get; set; } = null!;
+
     [NotMapped]
     public decimal Profit => Amount * Rate / 100;
 }
