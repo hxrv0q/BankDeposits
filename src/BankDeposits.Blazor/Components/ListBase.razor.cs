@@ -16,4 +16,4 @@ public partial class ListBase<T> : ComponentBase where T : class
     private IEnumerable<ListModelContext<T>>? IndexedItems => Items?.Select((item, index) => new ListModelContext<T>(item, index));
 }
 
-public record ListModelContext<TModel>(TModel Model, int Index);
+public record ListModelContext<T>(T Model, int Index);
