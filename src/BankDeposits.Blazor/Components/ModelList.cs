@@ -1,3 +1,4 @@
+using BankDeposits.Domain.Services;
 using BankDeposits.Domain.Services.Interfaces;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Rendering;
@@ -6,25 +7,22 @@ namespace BankDeposits.Blazor.Components;
 
 public sealed class ModelList<T> : ComponentBase where T : class
 {
-    [Inject]
-    public IService<T> Service { get; set; }
+    [Parameter]
+    public RenderFragment? TableHeader { get; set; }
 
     [Parameter]
-    public RenderFragment TableHeader { get; set; }
+    public RenderFragment<T>? TableBody { get; set; }
 
     [Parameter]
-    public RenderFragment<T> TableBody { get; set; }
+    public IEnumerable<T>? Items { get; set; }
 
-    [Parameter]
-    public IReadOnlyList<T> Items { get; set; }
-
-    protected override async Task OnInitializedAsync() => Items = (IReadOnlyList<T>)await Service.GetAllAsync();
+    protected override void OnInitialized() => Items = new List<T>();
 
     protected override void BuildRenderTree(RenderTreeBuilder builder)
     {
         base.BuildRenderTree(builder);
 
-        if (Items.Any())
+        if (Items is not null && Items.Any())
         {
             builder.OpenElement(0, "table");
             builder.AddAttribute(1, "class", "table table-striped table-hover");
@@ -37,7 +35,7 @@ public sealed class ModelList<T> : ComponentBase where T : class
             foreach (var item in Items)
             {
                 builder.OpenElement(5, "tr");
-                builder.AddContent(6, TableBody(item));
+                builder.AddContent(6, TableBody?.Invoke(item));
                 builder.CloseElement();
             }
 

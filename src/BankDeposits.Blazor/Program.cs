@@ -4,6 +4,7 @@ using BankDeposits.Domain.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
+
 builder.Services.AddRazorPages();
 builder.Services.AddServerSideBlazor();
 
