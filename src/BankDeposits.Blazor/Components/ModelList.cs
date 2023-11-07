@@ -28,14 +28,15 @@ public sealed class ModelList<T> : ComponentBase where T : class
             builder.AddAttribute(1, "class", "table table-striped table-hover");
 
             builder.OpenElement(2, "thead");
-            builder.AddContent(3, TableHeader);
+            builder.AddAttribute(3, "class", "thead-dark");
+            builder.AddContent(4, TableHeader);
             builder.CloseElement();
 
-            builder.OpenElement(4, "tbody");
+            builder.OpenElement(5, "tbody");
             foreach (var item in Items)
             {
-                builder.OpenElement(5, "tr");
-                builder.AddContent(6, TableBody?.Invoke(item));
+                builder.OpenElement(6, "tr");
+                builder.AddContent(7, TableBody?.Invoke(item));
                 builder.CloseElement();
             }
 
@@ -47,7 +48,7 @@ public sealed class ModelList<T> : ComponentBase where T : class
         {
             builder.OpenElement(0, "div");
             builder.AddAttribute(1, "class", "alert alert-info");
-            builder.AddContent(2, "No data to display");
+            builder.AddContent(2, "No data");
             builder.CloseElement();
         }
     }
