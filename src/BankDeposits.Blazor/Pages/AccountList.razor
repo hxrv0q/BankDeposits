@@ -1,0 +1,37 @@
+@page "/account"
+@inject IAccountService AccountService
+
+<PageTitle>View All Accounts</PageTitle>
+
+<h3>Accounts</h3>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <td>Id</td>
+        <td>Owner's Fullname</td>
+        <td>Balance</td>
+        <td>Total Profit</td>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var account in Accounts)
+        {
+            <tr>
+                <th>@account.Id</th>
+                <th>@account.Owner.FullName</th>
+                <th>@account.Balance</th>
+                <th>@account.TotalProfit</th>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@code {
+    public IList<Account> Accounts { get; set; } = new List<Account>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Accounts = (IList<Account>)await AccountService.GetAllAsync();
+    }
+}

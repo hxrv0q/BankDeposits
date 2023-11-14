@@ -1,0 +1,38 @@
+@page "/depositor"
+@inject IDepositorService DepositorService
+
+<PageTitle>View All Depositors</PageTitle>
+
+<h3>Depositors</h3>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Fullname</th>
+        <th>Passport</th>
+        <th>Address</th>
+    </tr>
+    </thead>
+    <tbody>
+        @foreach (var depositor in Depositors)
+        {
+            <tr>
+                <td>@depositor.Id</td>
+                <td>@depositor.FullName</td>
+                <td>@depositor.Passport</td>
+                <td>@depositor.Address</td>
+            </tr> 
+        }
+    </tbody>
+</table>
+
+@code {
+    private IList<Depositor> Depositors { get; set; } = new List<Depositor>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Depositors = (IList<Depositor>)await DepositorService.GetAllAsync();
+    }
+
+}

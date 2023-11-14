@@ -14,7 +14,7 @@ public class AccountService : GenericService<Account>, IAccountService
     {
     }
 
-    public override async Task<IEnumerable<Account>> GetAllAsync() => await Set.Include(x => x.Deposits).ToListAsync();
+    public override async Task<IEnumerable<Account>> GetAllAsync() => await Set.Include(x => x.Owner).Include(x => x.Deposits).ToListAsync();
 
     public override async Task<Account?> FindAsync(Expression<Func<Account, bool>> predicate) => await Set.Include(x => x.Deposits).FirstOrDefaultAsync(predicate);
 

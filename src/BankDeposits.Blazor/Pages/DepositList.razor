@@ -1,0 +1,45 @@
+@page "/deposit"
+@inject IDepositService DepositService
+
+<PageTitle>View All Deposits</PageTitle>
+
+<h3>Deposits</h3>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th> Id </th>
+        <th>Account's Number</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+        <th>Rate</th>
+        <th>Amount</th>
+        <th>Profit</th>
+    </tr>
+    </thead>
+    <tbody>
+    @foreach (var deposit in Deposits)
+    {
+        <tr>
+            <td>@deposit.Id</td>
+            <td>@deposit.Account.Number</td>
+            <td>@deposit.StartDate</td>
+            <td>@deposit.EndDate</td>
+            <td>@deposit.Rate</td>
+            <td>@deposit.Amount</td>
+            <td>@deposit.Profit</td>
+        </tr>
+    }
+    </tbody>
+</table>
+
+
+@code {
+    private IList<Deposit> Deposits { get; set; } = new List<Deposit>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        Deposits = (IList<Deposit>)await DepositService.GetAllAsync();
+    }
+
+}
